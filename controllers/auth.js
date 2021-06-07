@@ -2,7 +2,7 @@ const User = require("../models/user");
 let uuidv1 = require('uuidv1');
 const {errorHandler} = require('../helpers/dbErrorHandler')
 const jwt = require('jsonwebtoken')
-const expresJwt = require('express-jwt')
+const expressJwt = require('express-jwt')
 
 exports.signup = (req, res) => {
     console.log("req.body", req.body);
@@ -45,3 +45,9 @@ exports.signout = (req, res) =>{
     res.clearCookie('t')
     res.json({message: 'Signout'})
 }
+
+exports.requireSignin = expressJwt({
+    secret: process.env.JWT_SECRET,
+    algorithms: ["HS256"], // added later
+    userProperty: "auth",
+  });
