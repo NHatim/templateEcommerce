@@ -1,5 +1,5 @@
 const express = require("express");
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const morgan = require("morgan");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
@@ -10,15 +10,13 @@ const userRoutes = require("./routes/user");
 // app
 const app = express();
 
-// db
 mongoose
-    .connect(process.env.DATABASE, {
+    .connect(process.env.DATABASE,{
         useNewUrlParser: true,
         useCreateIndex: true,
-        useUnifiedTopology: true 
-        
+        useUnifiedTopology: true
     })
-    .then(() => console.log("DB Connected"));
+    .then(() => console.log('DB Connected'));
 
 // middlewares
 app.use(morgan("dev"));
